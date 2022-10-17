@@ -18,7 +18,7 @@ class Movie(models.Model):
         to=Director,
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name='movie',
     )
 
@@ -32,6 +32,10 @@ class Review(models.Model):
         to=Movie,
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
-        related_name='review',
+        on_delete=models.CASCADE,
+        related_name='reviews',
     )
+    stars = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.text
